@@ -132,6 +132,18 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.25.4.tgz#0b17ec8a70b2385827d52314c1253160a0b9bacc"
   integrity sha512-nOT2vZNw6hJ+z43oP1SPea/G/6AbN6X+bGNhNuq8NtRHy4wsMhw765IKLNmnjek7GvjWBYQ8Q5VBoYTFg9y1UQ==
 
+"@manapotion/core@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@manapotion/core/-/core-1.1.3.tgz#a66ee066efd32a470f9abfe0f67c0a0e05025725"
+  integrity sha512-IZrwM0ZW8IaUGjLgRKUpWPS1w9rncoOqvuyDkO7BZUS0aibsdWqRwBvyKwr/ftO8KTWOeek7tFBKorbKCsdQqA==
+
+"@manapotion/vanilla@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@manapotion/vanilla/-/vanilla-1.1.3.tgz#15309bc789f8212f357bf0222c2e2c73e8943aff"
+  integrity sha512-oUx/QGJKEv8Evxl5UmpkcpS8A1rHljNg7IWHBrzr0lBUgDNghQxUwDl0dSdTJr2CnnepvnGV0C1XkBSRqeGONA==
+  dependencies:
+    "@manapotion/core" "^1.1.3"
+
 "@rollup/rollup-android-arm-eabi@4.41.1":
   version "4.41.1"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.41.1.tgz#f39f09f60d4a562de727c960d7b202a2cf797424"
@@ -237,6 +249,11 @@
   resolved "https://registry.yarnpkg.com/@tweenjs/tween.js/-/tween.js-23.1.3.tgz#eff0245735c04a928bb19c026b58c2a56460539d"
   integrity sha512-vJmvvwFxYuGnF2axRtPYocag6Clbb5YS7kLL+SO/TeVFzHqDIWrNKYtcsPMibjDx9O+bu+psAy9NKfWklassUA==
 
+"@types/bezier-js@^4.1.3":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@types/bezier-js/-/bezier-js-4.1.3.tgz#237d4fe7e9aae7edd0c27a71f9f236f4ddc1c562"
+  integrity sha512-FNVVCu5mx/rJCWBxLTcL7oOajmGtWtBTDjq6DSUWUI12GeePivrZZXz+UgE0D6VYsLEjvExRO03z4hVtu3pTEQ==
+
 "@types/estree@1.0.7":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.7.tgz#4158d3105276773d5b7695cd4834b1722e4f37a8"
@@ -246,6 +263,11 @@
   version "0.17.4"
   resolved "https://registry.yarnpkg.com/@types/stats.js/-/stats.js-0.17.4.tgz#1933e5ff153a23c7664487833198d685c22e791e"
   integrity sha512-jIBvWWShCvlBqBNIZt0KAshWpvSjhkwkEu4ZUcASoAvhmrgAUI2t1dXrjSL4xXVLB4FznPrIsX3nKXFl/Dt4vA==
+
+"@types/svg-path-parser@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@types/svg-path-parser/-/svg-path-parser-1.1.6.tgz#c9c2b7c45a28e4051e46045f7899d63c592c2769"
+  integrity sha512-3sw6pk91pEtW6W7hRrJ9ZkAgPiJSaNdh7iY8rVOy7buajpQuy2J9A0ZUaiOVcbFvl0p7J+Ne4012muCE/MB+hQ==
 
 "@types/three@^0.176.0":
   version "0.176.0"
@@ -269,6 +291,11 @@
   version "0.1.60"
   resolved "https://registry.yarnpkg.com/@webgpu/types/-/types-0.1.60.tgz#4f58e763ce060a81b03ab7ee1ad879c7024923fd"
   integrity sha512-8B/tdfRFKdrnejqmvq95ogp8tf52oZ51p3f4QD5m5Paey/qlX4Rhhy5Y8tgFMi7Ms70HzcMMw3EQjH/jdhTwlA==
+
+bezier-js@^6.1.4:
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/bezier-js/-/bezier-js-6.1.4.tgz#c7828f6c8900562b69d5040afb881bcbdad82001"
+  integrity sha512-PA0FW9ZpcHbojUCMu28z9Vg/fNkwTj5YhusSAjHHDfHDGLxJ6YUKrAN2vk1fP2MMOxVw4Oko16FMlRGVBGqLKg==
 
 esbuild@^0.25.0:
   version "0.25.4"
@@ -378,6 +405,11 @@ source-map-js@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
   integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
+
+svg-path-parser@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/svg-path-parser/-/svg-path-parser-1.1.0.tgz#e16b4b39df0d2b0d39e8347db79fdda1453a6046"
+  integrity sha512-jGCUqcQyXpfe38R7RFfhrMyfXcBmpMNJI/B+4CE9/Unkh98UporAc461GTthv+TVDuZXsBx7/WiwJb1Oh4tt4A==
 
 three@^0.176.0:
   version "0.176.0"

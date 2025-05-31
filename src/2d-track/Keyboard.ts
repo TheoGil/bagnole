@@ -1,6 +1,4 @@
 import { Vector2 } from "three";
-import "./style.css";
-import { renderVehicle2D, Vehicle } from "./Vehicle";
 
 class Keyboard {
   keys: Map<
@@ -27,6 +25,46 @@ class Keyboard {
         timeStamp: number;
       }
     >();
+
+    this.initTouchControls();
+  }
+
+  initTouchControls() {
+    const leftButtonEl = document.querySelector("[data-button-left");
+    leftButtonEl?.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      this.keys.set("ArrowLeft", { isDown: true, timeStamp: e.timeStamp });
+    });
+    leftButtonEl?.addEventListener("pointerup", (e) => {
+      e.preventDefault();
+      if (this.keys.get("ArrowLeft")) {
+        this.keys.get("ArrowLeft")!.isDown = false;
+      }
+    });
+
+    const rightButtonEl = document.querySelector("[data-button-right");
+    rightButtonEl?.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      this.keys.set("ArrowRight", { isDown: true, timeStamp: e.timeStamp });
+    });
+    rightButtonEl?.addEventListener("pointerup", (e) => {
+      e.preventDefault();
+      if (this.keys.get("ArrowRight")) {
+        this.keys.get("ArrowRight")!.isDown = false;
+      }
+    });
+
+    const upButtonEl = document.querySelector("[data-button-up");
+    upButtonEl?.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      this.keys.set("ArrowUp", { isDown: true, timeStamp: e.timeStamp });
+    });
+    upButtonEl?.addEventListener("pointerup", (e) => {
+      e.preventDefault();
+      if (this.keys.get("ArrowUp")) {
+        this.keys.get("ArrowUp")!.isDown = false;
+      }
+    });
   }
 
   onKeyDown(e: KeyboardEvent) {
@@ -90,49 +128,4 @@ class Keyboard {
   }
 }
 
-class Game {
-  canvas: HTMLCanvasElement;
-  ctx: CanvasRenderingContext2D;
-  vehicle: Vehicle;
-  keyboard: Keyboard;
-
-  constructor() {
-    // Setup player input
-    this.keyboard = new Keyboard();
-
-    // Setup vehicle
-    this.vehicle = new Vehicle();
-
-    // Setup rendering
-    this.canvas = document.createElement("canvas");
-    this.ctx = this.canvas.getContext("2d")!;
-
-    document.body.appendChild(this.canvas);
-    this.canvas.style.position = "fixed";
-    this.canvas.style.inset = "0";
-    this.canvas.style.width = "100%";
-    this.canvas.style.height = "100%";
-    this.onResize();
-
-    this.update = this.update.bind(this);
-    this.update();
-  }
-
-  onResize() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-  }
-
-  update() {
-    this.keyboard.updateInputVector();
-
-    this.vehicle.update(this.keyboard.inputVector);
-
-    this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    renderVehicle2D(this.ctx, this.vehicle);
-
-    requestAnimationFrame(this.update);
-  }
-}
-
-new Game();
+export { Keyboard };

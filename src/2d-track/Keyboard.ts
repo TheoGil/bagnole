@@ -33,10 +33,12 @@ class Keyboard {
     const leftButtonEl = document.querySelector("[data-button-left");
     leftButtonEl?.addEventListener("pointerdown", (e) => {
       e.preventDefault();
+      leftButtonEl.classList.add("active");
       this.keys.set("ArrowLeft", { isDown: true, timeStamp: e.timeStamp });
     });
     leftButtonEl?.addEventListener("pointerup", (e) => {
       e.preventDefault();
+      leftButtonEl.classList.remove("active");
       if (this.keys.get("ArrowLeft")) {
         this.keys.get("ArrowLeft")!.isDown = false;
       }
@@ -44,11 +46,13 @@ class Keyboard {
 
     const rightButtonEl = document.querySelector("[data-button-right");
     rightButtonEl?.addEventListener("pointerdown", (e) => {
+      rightButtonEl.classList.add("active");
       e.preventDefault();
       this.keys.set("ArrowRight", { isDown: true, timeStamp: e.timeStamp });
     });
     rightButtonEl?.addEventListener("pointerup", (e) => {
       e.preventDefault();
+      rightButtonEl.classList.remove("active");
       if (this.keys.get("ArrowRight")) {
         this.keys.get("ArrowRight")!.isDown = false;
       }
@@ -57,10 +61,12 @@ class Keyboard {
     const upButtonEl = document.querySelector("[data-button-up");
     upButtonEl?.addEventListener("pointerdown", (e) => {
       e.preventDefault();
+      upButtonEl.classList.add("active");
       this.keys.set("ArrowUp", { isDown: true, timeStamp: e.timeStamp });
     });
     upButtonEl?.addEventListener("pointerup", (e) => {
       e.preventDefault();
+      upButtonEl.classList.remove("active");
       if (this.keys.get("ArrowUp")) {
         this.keys.get("ArrowUp")!.isDown = false;
       }

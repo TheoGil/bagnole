@@ -16,7 +16,16 @@ class Mouse {
   onMouseMove(e: MouseEvent) {
     // Convert "world" mouse position to "canvas space"
     const canvasBcr = this.canvasEl.getBoundingClientRect();
-    this.position.set(e.clientX - canvasBcr.x, e.clientY - canvasBcr.y);
+
+    const scaleX = this.canvasEl.width / canvasBcr.width;
+    const scaleY = this.canvasEl.height / canvasBcr.height;
+
+    this.position.set(
+      (e.clientX - canvasBcr.x) * scaleX,
+      (e.clientY - canvasBcr.y) * scaleY
+    );
+
+    console.log(this.position.x);
   }
 }
 

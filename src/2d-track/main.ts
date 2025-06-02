@@ -3,6 +3,7 @@ import { renderVehicle2D, Vehicle } from "./Vehicle";
 import { Keyboard } from "./Keyboard";
 import { renderTrack, Track } from "./Track";
 import "./style.css";
+import { Mouse, renderMouse } from "./Mouse";
 
 // Those number are the SVG artboard width and height.
 // I know those because I've authored the SVG myself.
@@ -12,7 +13,7 @@ const WORLD_HEIGHT = 1000;
 
 const track = new Track({
   rawSvg: rawSvgTrack,
-  width: 50,
+  width: 100,
 });
 
 const canvasEl = document.createElement("canvas")!;
@@ -23,6 +24,8 @@ document.body.appendChild(canvasEl);
 // canvasEl.style.position = "absolute";
 // canvasEl.style.top = "0px";
 // canvasEl.style.left = "0px";
+
+const mouse = new Mouse({ canvas: canvasEl });
 
 const keyboard = new Keyboard();
 
@@ -47,6 +50,7 @@ function animate() {
 
   renderTrack(ctx, track);
   renderVehicle2D(ctx, vehicle);
+  renderMouse(ctx, mouse, track);
 
   requestAnimationFrame(animate);
 }

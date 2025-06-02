@@ -4,7 +4,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #efefef;
+  background-color: #4caf50;
   overflow: hidden;
 }
 
@@ -13,6 +13,7 @@ body * {
 }
 
 canvas {
+  outline: 1px red solid;
   aspect-ratio: 1;
 
   @media (orientation: landscape) {

@@ -2,8 +2,11 @@ import rawSvgTrack from "./Mario Circuit 1.svg?raw";
 import { renderVehicle2D, Vehicle } from "./Vehicle";
 import { PlayerInput } from "./PlayerInput";
 import { renderTrack, Track } from "./Track";
-import "./style.css";
 import { Mouse, renderMouse } from "./Mouse";
+import Stats from "stats.js";
+
+import "./style.css";
+import { Pane, FolderApi } from "tweakpane";
 
 // Those number are the SVG artboard width and height.
 // I know those because I've authored the SVG myself.
@@ -21,9 +24,9 @@ canvasEl.width = WORLD_WIDTH;
 canvasEl.height = WORLD_HEIGHT;
 const ctx = canvasEl.getContext("2d")!;
 document.body.appendChild(canvasEl);
-// canvasEl.style.position = "absolute";
-// canvasEl.style.top = "0px";
-// canvasEl.style.left = "0px";
+
+const stats = new Stats();
+document.body.appendChild(stats.dom);
 
 const mouse = new Mouse({ canvas: canvasEl });
 
@@ -33,7 +36,21 @@ const vehicle = new Vehicle();
 vehicle.position;
 track.curvePath.getPoint(0, vehicle.position);
 
+const pane = new Pane();
+const settingsFolder = (pane as FolderApi).addFolder({
+  title: "Settings",
+  expanded: false,
+});
+settingsFolder.addBinding(track, "width", {
+  label: "Track width",
+  min: 10,
+  max: 200,
+  step: 1,
+});
+
 function animate() {
+  stats.begin();
+
   playerInput.updateInputVector();
   vehicle.update(playerInput.inputVector);
   const correctedVehiclePosition = track.getCorrectedPoint(vehicle.position);
@@ -51,6 +68,8 @@ function animate() {
   renderTrack(ctx, track);
   renderVehicle2D(ctx, vehicle);
   renderMouse(ctx, mouse, track);
+
+  stats.end();
 
   requestAnimationFrame(animate);
 }

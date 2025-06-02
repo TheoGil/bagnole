@@ -1,6 +1,6 @@
 import { Vector2 } from "three";
 
-class Keyboard {
+class PlayerInput {
   keys: Map<
     KeyboardEvent["code"],
     {
@@ -30,45 +30,43 @@ class Keyboard {
   }
 
   initTouchControls() {
-    const leftButtonEl = document.querySelector("[data-button-left");
-    leftButtonEl?.addEventListener("pointerdown", (e) => {
-      e.preventDefault();
-      leftButtonEl.classList.add("active");
-      this.keys.set("ArrowLeft", { isDown: true, timeStamp: e.timeStamp });
-    });
-    leftButtonEl?.addEventListener("pointerup", (e) => {
-      e.preventDefault();
-      leftButtonEl.classList.remove("active");
-      if (this.keys.get("ArrowLeft")) {
-        this.keys.get("ArrowLeft")!.isDown = false;
-      }
-    });
+    this.initTouchButton(
+      document.querySelector("[data-button-left")!,
+      "ArrowLeft"
+    );
+    this.initTouchButton(
+      document.querySelector("[data-button-right")!,
+      "ArrowRight"
+    );
+    this.initTouchButton(document.querySelector("[data-button-up")!, "ArrowUp");
+  }
 
-    const rightButtonEl = document.querySelector("[data-button-right");
-    rightButtonEl?.addEventListener("pointerdown", (e) => {
-      rightButtonEl.classList.add("active");
+  initTouchButton(buttonEl: HTMLElement, keyCode: string) {
+    const onButtonDown = (e: PointerEvent) => {
       e.preventDefault();
-      this.keys.set("ArrowRight", { isDown: true, timeStamp: e.timeStamp });
-    });
-    rightButtonEl?.addEventListener("pointerup", (e) => {
-      e.preventDefault();
-      rightButtonEl.classList.remove("active");
-      if (this.keys.get("ArrowRight")) {
-        this.keys.get("ArrowRight")!.isDown = false;
-      }
-    });
+      buttonEl.classList.add("active");
+      this.keys.set(keyCode, { isDown: true, timeStamp: e.timeStamp });
+    };
 
-    const upButtonEl = document.querySelector("[data-button-up");
-    upButtonEl?.addEventListener("pointerdown", (e) => {
+    const onButtonUp = (e: PointerEvent | TouchEvent) => {
       e.preventDefault();
-      upButtonEl.classList.add("active");
-      this.keys.set("ArrowUp", { isDown: true, timeStamp: e.timeStamp });
-    });
-    upButtonEl?.addEventListener("pointerup", (e) => {
-      e.preventDefault();
-      upButtonEl.classList.remove("active");
-      if (this.keys.get("ArrowUp")) {
-        this.keys.get("ArrowUp")!.isDown = false;
+      buttonEl.classList.remove("active");
+      if (this.keys.get(keyCode)) {
+        this.keys.get(keyCode)!.isDown = false;
+      }
+    };
+
+    buttonEl?.addEventListener("pointerdown", onButtonDown);
+    buttonEl?.addEventListener("pointerup", onButtonUp);
+    buttonEl?.addEventListener("touchmove", (e: TouchEvent) => {
+      const bcr = buttonEl.getBoundingClientRect();
+      if (
+        e.touches[0].clientX < bcr.x || // Is left
+        e.touches[0].clientX > bcr.x + bcr.width || // Is right
+        e.touches[0].clientY < bcr.y || // Is above
+        e.touches[0].clientY > bcr.y + bcr.height // Is below
+      ) {
+        onButtonUp(e);
       }
     });
   }
@@ -134,4 +132,4 @@ class Keyboard {
   }
 }
 
-export { Keyboard };
+export { PlayerInput };

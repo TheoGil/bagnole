@@ -1,6 +1,6 @@
 import rawSvgTrack from "./Mario Circuit 1.svg?raw";
 import { renderVehicle2D, Vehicle } from "./Vehicle";
-import { Keyboard } from "./Keyboard";
+import { PlayerInput } from "./PlayerInput";
 import { renderTrack, Track } from "./Track";
 import "./style.css";
 import { Mouse, renderMouse } from "./Mouse";
@@ -27,15 +27,15 @@ document.body.appendChild(canvasEl);
 
 const mouse = new Mouse({ canvas: canvasEl });
 
-const keyboard = new Keyboard();
+const playerInput = new PlayerInput();
 
 const vehicle = new Vehicle();
 vehicle.position;
 track.curvePath.getPoint(0, vehicle.position);
 
 function animate() {
-  keyboard.updateInputVector();
-  vehicle.update(keyboard.inputVector);
+  playerInput.updateInputVector();
+  vehicle.update(playerInput.inputVector);
   const correctedVehiclePosition = track.getCorrectedPoint(vehicle.position);
   if (correctedVehiclePosition) {
     vehicle.position.copy(correctedVehiclePosition);

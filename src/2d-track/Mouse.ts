@@ -24,8 +24,6 @@ class Mouse {
       (e.clientX - canvasBcr.x) * scaleX,
       (e.clientY - canvasBcr.y) * scaleY
     );
-
-    console.log(this.position.x);
   }
 }
 
